@@ -15,7 +15,7 @@ const __dirname = path.resolve();
 
 
 // middleware (order is very important) (ONLY NEEDED IN DEVELOPMENT)
-if (process.env.NOTE_ENV !== "production"){
+if (process.env.NODE_ENV !== "production"){
     app.use(cors({
         origin: "http://localhost:5173", 
     }));
@@ -27,7 +27,7 @@ app.use("/api/notes", notesRoutes);
 
 
 // We only want to do this when in production
-if(process.env.NOTE_ENV === "production"){
+if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
     app.get("*", (req,res)=>{
